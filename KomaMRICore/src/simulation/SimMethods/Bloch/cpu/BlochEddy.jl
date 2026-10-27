@@ -24,12 +24,13 @@ struct BlochEddyPrealloc{
     coordinates::P
 end
 
+"""
 view_sens(sensitivities, _) = sensitivities
 view_sens(sensitivities::CoilSensitivities, i) = CoilSensitivities(
     @view(sensitivities.values[i, :]),
     sensitivities.interpolators,
-)
-
+)"
+"""
 Base.view(p::BlochEddyPrealloc, i::UnitRange) = begin
     @views BlochEddyPrealloc(
         p.M[i],
